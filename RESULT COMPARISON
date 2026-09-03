@@ -1,0 +1,20 @@
+## Model Performance Comparison
+
+All four models were evaluated for next-hour AQI (`AQI_Next_Hour`) prediction using the same chronological train-test strategy. The training data covers 2015–2019, while 2020 is used as the unseen test period. The engineered feature set contains 130 features, including pollutant concentrations, temporal features, lag features, and rolling statistics. The LSTM additionally uses 24-hour sequential input windows.
+
+| Rank | Model | MAE ↓ | MSE ↓ | RMSE ↓ | R² ↑ | Performance |
+|---:|---|---:|---:|---:|---:|---|
+| **1** | **Gradient Boosting** | **3.88** | **50.50** | **7.11** | **0.9919** | Best |
+| **2** | **Random Forest** | **5.09** | **96.05** | **9.80** | **0.9845** | Very Good |
+| **3** | **ANN** | **13.13** | **291.04** | **17.06** | **0.9532** | Good |
+| **4** | **LSTM** | **16.21** | **659.55** | **25.68** | **0.8941** | Lowest |
+
+### Result Analysis
+
+- **Gradient Boosting** achieved the best performance with an MAE of **3.88**, RMSE of **7.11**, and R² of **0.9919**.
+- **Random Forest** achieved the second-best performance with an MAE of **5.09**, RMSE of **9.80**, and R² of **0.9845**.
+- **ANN** achieved an MAE of **13.13**, RMSE of **17.06**, and R² of **0.9532**.
+- **LSTM** achieved an MAE of **16.21**, RMSE of **25.68**, and R² of **0.8941** under the implemented 24-hour sequence configuration.
+- Based on the evaluated test-set metrics, **Gradient Boosting was selected as the best-performing model for next-hour AQI prediction**.
+
+> **Note:** R² represents the proportion of variance explained by the regression model and should not be interpreted as classification accuracy.
